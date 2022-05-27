@@ -1,20 +1,77 @@
 import * as React from "react";
-import ChildForm from "./childForm";
+import ExperienceSection from "../Component/Experience";
 import DefaultSection from "../Component/Default/default";
-const DynamicForm: React.FC<{ formData: any }> = ({ formData }) => {
+import { FormDataType } from "../formData";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+
+type formData = {
+  formData: FormDataType;
+};
+
+type ExperienceType = {
+  title: string;
+  company: string;
+  summary: string;
+  startDate: string;
+  endDate: string;
+  currentWork: Boolean;
+};
+
+interface MyFormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: number;
+  address: string;
+  store: string;
+  dateOfBirth:Date |null;
+  experience: ExperienceType[];
+}
+
+const errorSchema = Yup.object().shape({
+  firstName: Yup.string().required('Required field'),
+  lastName: Yup.string().required('Required field'),
+  email:Yup.string().email('Invalid email').required('Required'),
+  phoneNumber: Yup.number().required('Required field'),
+  store: Yup.string().required("Required field")
+})
+
+
+const DynamicForm = ({ formData }: formData) => {
+  const initialValues: MyFormValues = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: 0,
+    address: "",
+    store: "",
+    dateOfBirth: null,
+    experience: [],
+  };
   return (
     <div>
-      {Object.keys(formData).map((key: any) => {
-        switch (key) {
-          case "personalInfoField":
-            return <DefaultSection data = {formData[key]}/>
-          case "experienceField":
-            return <ChildForm data={formData[key]} />;
-          case "education":
-            return <ChildForm data={formData[key]} />;
-          
-        }
-      })}
+      <Formik
+        initialValues={initialValues}
+        // validationSchema={errorSchema}
+        onSubmit={(values, action) => {
+          console.log(values);
+        }}
+      >
+        <Form>
+          {Object.keys(formData).map((key: string) => {
+            switch (key) {
+              case "personalInfoField":
+                return <DefaultSection key={key} data={formData[key]} />;
+              case "experienceField":
+                return <ExperienceSection key={key} data={formData[key]} />;
+              // case "education":
+              //   return <ChildForm key={key} data={formData[key]} />;
+            }
+          })}
+          <button type="submit">Submit</button>
+        </Form>
+      </Formik>
     </div>
   );
 };

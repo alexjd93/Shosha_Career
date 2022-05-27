@@ -1,19 +1,17 @@
 import React from "react";
-import Title from "../Header/header";
 import Global from "../Globa/global";
 import { element } from "../../formData";
 import { Form } from "formik";
 
 type DataType = {
-  key: string;
+  key?: string;
   data: element[];
 };
 
-const defaultSection = ({ data,key }: DataType) => {
+const ExperienceChild = ({ data,key }: DataType) => {
     console.log(key)
   return ( 
     <div>
-      <Title title ="Personal information" />
         <div className="subSection">
           {data.map((element: element) => {
               return <Global element={element} />;
@@ -24,4 +22,4 @@ const defaultSection = ({ data,key }: DataType) => {
   );
 };
 
-export default defaultSection;
+export default ExperienceChild;

@@ -1,30 +1,25 @@
-export const formData = 
+export const formData:FormDataType = 
   { 
     personalInfoField: [
       {
-        fieldName:"Personal Information",
-        fieldId:"Title",
-        fieldType: "title"
-      },
-      {
         fieldName: "First Name",
         fieldId: "firstName",
-        fieldType: "text",
+        fieldType: "input",
       },
       {
         fieldName: "Last Name",
         fieldId: "lastName",
-        fieldType: "text",
+        fieldType: "input",
       },
       {
         fieldName: "Email",
         fieldId: "email",
-        fieldType: "text",
+        fieldType: "input",
       },
       {
         fieldName: "Phone Number",
         fieldId: "phoneNumber",
-        fieldType: "text",
+        fieldType: "input",
       },
       {
         fieldName: "Date of Birth",
@@ -32,10 +27,16 @@ export const formData =
         fieldType: "calendar",
       },
       {
-        fieldName: "Your preferred stores!",
-        fieldId: "store",
-        fieldType: "autocomplete",
+        fieldName: "Address",
+        fieldId: "address",
+        fieldType: "input",
       },
+
+      // {
+      //   fieldName: "Your preferred stores!",
+      //   fieldId: "store",
+      //   fieldType: "select",
+      // },
     ],
     personalWebInfoField: [
       {
@@ -63,22 +64,22 @@ export const formData =
       {
         fieldName: "Title",
         fieldId: "title",
-        fieldType: "text",
+        fieldType: "input",
       },
       {
         fieldName: "Company",
         fieldId: "company",
-        fieldType: "text",
+        fieldType: "input",
       },
       {
         fieldName: "Location (City)",
         fieldId: "location",
-        fieldType: "text",
+        fieldType: "input",
       },
       {
         fieldName: "Detail",
         fieldId: "detail",
-        fieldType: "text",
+        fieldType: "input",
       },
       {
         fieldName: "Save",
@@ -177,6 +178,20 @@ export const formData =
       }
     ]
   }
-    
+  
+  export type FormDataType = {
+    personalInfoField:element[],
+    personalWebInfoField:element[],
+    experienceField:element[],
+    education:element[],
+    preliminary:element[]
+  }
+
+  export type element= {
+    fieldName: string
+    fieldId: string,
+    fieldOptions?:string[],
+    fieldType: string
+  }
   
 

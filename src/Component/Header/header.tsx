@@ -2,8 +2,12 @@ type Props = {
     title: string
 }
 const Header = ({title}:Props) => {
+    console.log(title)
     return(
-        <h1>Test</h1>
+        <div className="headline">
+            <h2>{title}</h2>
+        </div>
+        
     )
 }
 

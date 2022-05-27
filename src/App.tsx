@@ -2,6 +2,7 @@
 import './App.css';
 import {formData} from '../src/formData';
 import DynamicForm from '../src/DynamicForm/dynamicForm';
+
 interface IDataType {
   firstName: string,
   lastName: string,
@@ -18,7 +19,7 @@ const App = () => {
     education:[]
   };
   return (
-    <div className="App"> 
+    <div className="container mx-auto"> 
         <DynamicForm formData = {formData}/>
     </div>
   );
