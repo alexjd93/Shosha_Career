@@ -1,7 +1,7 @@
 import React from "react";
 import { element } from "../../formData";
 import { Field, ErrorMessage } from "formik";
-import Test from '../Calendar/calendar';
+import Test from "../Calendar/calendar";
 type Props<DataItem> = {
   element: DataItem;
 };
@@ -19,11 +19,11 @@ const Global = <T extends element>({ element }: Props<T>) => {
         />
       );
       break;
-      case "calendar":
-        component = (
-            <Test/>
-        )
-        break;
+    case "calendar":
+      component = <Test />;
+      break;
+    case "button":
+      component = <Field />;
   }
   return (
     <div className="inputBox">
