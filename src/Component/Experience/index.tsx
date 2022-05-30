@@ -54,8 +54,8 @@ const ExperienceSection = ({ data, key }: DataType) => {
         setExperienceData(experience);
       }
     }
-  }, [values]);
-  
+  }, [show]);
+
   const saveExperience = ({ data }: DataType) => {};
 
   return (
@@ -66,13 +66,9 @@ const ExperienceSection = ({ data, key }: DataType) => {
         render={(arrayHelpers) => (
           <div>
             {values.experience.map((experience: any, index: any) => {
-              console.log(arrayHelpers)
+              console.log(arrayHelpers);
               if (experience.save === true) {
-                return (
-                  <div>
-                    {experience["company"]}
-                  </div>
-                );
+                return <div>{experience["company"]}</div>;
               }
             })}
             <button onClick={() => setShow(true)}>ADD</button>
@@ -84,10 +80,12 @@ const ExperienceSection = ({ data, key }: DataType) => {
                   id={values.experience.length}
                   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                   saveExperience={() => {
-                    const getData = values.experience[0]
-                    getData['save'] = true
-                    arrayHelpers.replace(0,getData)
-                    setShow(false)
+                    console.log(values.experience.length);
+                    const getData =
+                      values.experience[values.experience.length - 1];
+                    getData["save"] = true;
+                    arrayHelpers.replace(values.experience.length - 1, getData);
+                    setShow(false);
                   }}
                 />
               )}
