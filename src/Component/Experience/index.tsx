@@ -54,7 +54,8 @@ const ExperienceSection = ({ data, key }: DataType) => {
         setExperienceData(experience);
       }
     }
-  }, []);
+  }, [values]);
+  
   const saveExperience = ({ data }: DataType) => {};
 
   return (
@@ -65,8 +66,8 @@ const ExperienceSection = ({ data, key }: DataType) => {
         render={(arrayHelpers) => (
           <div>
             {values.experience.map((experience: any, index: any) => {
-              console.log(values)
-              if (experience) {
+              console.log(arrayHelpers)
+              if (experience.save === true) {
                 return (
                   <div>
                     {experience["company"]}
@@ -82,7 +83,12 @@ const ExperienceSection = ({ data, key }: DataType) => {
                   show={setShow}
                   id={values.experience.length}
                   // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                  saveExperience={(data) => console.log(data)}
+                  saveExperience={() => {
+                    const getData = values.experience[0]
+                    getData['save'] = true
+                    arrayHelpers.replace(0,getData)
+                    setShow(false)
+                  }}
                 />
               )}
             </div>

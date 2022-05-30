@@ -11,10 +11,10 @@ type formData = {
 
 type ExperienceType = {
   title: string;
-  company: string;
+  industry: string;
   summary: string;
-  startDate: string;
-  endDate: string;
+  startDate?: string;
+  endDate?: string;
   currentWork: Boolean;
 };
 
@@ -47,7 +47,8 @@ const DynamicForm = ({ formData }: formData) => {
     address: "",
     store: "",
     dateOfBirth: null,
-    experience: [],
+    experience: [
+    ],
   };
   return (
     <div>
