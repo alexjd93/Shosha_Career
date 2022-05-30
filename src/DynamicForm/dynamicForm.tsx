@@ -25,18 +25,17 @@ interface MyFormValues {
   phoneNumber: number;
   address: string;
   store: string;
-  dateOfBirth:Date |null;
+  dateOfBirth: Date | null;
   experience: ExperienceType[];
 }
 
 const errorSchema = Yup.object().shape({
-  firstName: Yup.string().required('Required field'),
-  lastName: Yup.string().required('Required field'),
-  email:Yup.string().email('Invalid email').required('Required'),
-  phoneNumber: Yup.number().required('Required field'),
-  store: Yup.string().required("Required field")
-})
-
+  firstName: Yup.string().required("Required field"),
+  lastName: Yup.string().required("Required field"),
+  email: Yup.string().email("Invalid email").required("Required"),
+  phoneNumber: Yup.number().required("Required field"),
+  store: Yup.string().required("Required field"),
+});
 
 const DynamicForm = ({ formData }: formData) => {
   const initialValues: MyFormValues = {
@@ -48,6 +47,12 @@ const DynamicForm = ({ formData }: formData) => {
     store: "",
     dateOfBirth: null,
     experience: [
+      {
+        title: "",
+        industry: "",
+        summary: "",
+        currentWork: false,
+      },
     ],
   };
   return (

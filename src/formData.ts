@@ -77,11 +77,6 @@ export const formData: FormDataType = {
       fieldId: "detail",
       fieldType: "input",
     },
-    {
-      fieldName: "Save",
-      fieldId: "save",
-      fieldType: "button",
-    },
   ],
   education: [
     {

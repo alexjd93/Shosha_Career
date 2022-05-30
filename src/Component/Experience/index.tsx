@@ -31,32 +31,31 @@ interface MyFormValues {
 }
 
 const ExperienceSection = ({ data, key }: DataType) => {
-  const [show, setShow] = useState<Boolean>(false);
+  const [show, setShow] = useState<Boolean>(true);
   const [experienceData, setExperienceData] = useState<any>([]);
   const { values, submitForm } = useFormikContext<any>();
-  React.useEffect(() => {
-    if (values) {
-      let experience = [];
-      const id = values.experience.length;
-      for (const i of data) {
-        let obj = {};
-        if (id !== 0) {
-          obj = {
-            ...i,
-            fieldId: `experience[${id + 1}].${i.fieldId}`,
-          };
-        }
-        obj = {
-          ...i,
-          fieldId: `experience[${id}].${i.fieldId}`,
-        };
-        experience.push(obj);
-        setExperienceData(experience);
-      }
-    }
-  }, [show]);
 
-  const saveExperience = ({ data }: DataType) => {};
+  // React.useEffect(() => {
+  //   if (values) {
+  //     let experience = [];
+  //     const id = values.experience.length;
+  //     for (const i of data) {
+  //       let obj = {};
+  //       if (id !== 0) {
+  //         obj = {
+  //           ...i,
+  //           fieldId: `experience[${id + 1}].${i.fieldId}`,
+  //         };
+  //       }
+  //       obj = {
+  //         ...i,
+  //         fieldId: `experience[${id}].${i.fieldId}`,
+  //       };
+  //       experience.push(obj);
+  //       setExperienceData(experience);
+  //     }
+  //   }
+  // }, [show]);
 
   return (
     <div>
@@ -65,31 +64,33 @@ const ExperienceSection = ({ data, key }: DataType) => {
         name="experience"
         render={(arrayHelpers) => (
           <div>
-            {values.experience.map((experience: any, index: any) => {
-              console.log(arrayHelpers);
-              if (experience.save === true) {
-                return <div>{experience["company"]}</div>;
+            <button type="button" onClick={() => arrayHelpers.push({})}>
+              ADD
+            </button>
+
+            {values.experience.map((exp: any, index: number) => {
+              if (exp && exp.saved === true) {
+                return <p>TEST</p>;
+              } else {
+                let newArray = [];
+                let obj = {};
+                for (const i of data) {
+                  obj = { ...i, fieldId: `experience[${index}].${i.fieldId}` };
+                  newArray.push(obj);
+                }
+                return (
+                  <ExperienceChild
+                    data={newArray}
+                    saveExperience={() => {
+                      const getData = values.experience[index];
+                      getData["saved"] = true;
+                      arrayHelpers.replace(index, getData);
+                      setShow(false);
+                    }}
+                  />
+                );
               }
             })}
-            <button onClick={() => setShow(true)}>ADD</button>
-            <div className="subSection">
-              {show && (
-                <ExperienceChild
-                  data={experienceData}
-                  show={setShow}
-                  id={values.experience.length}
-                  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-                  saveExperience={() => {
-                    console.log(values.experience.length);
-                    const getData =
-                      values.experience[values.experience.length - 1];
-                    getData["save"] = true;
-                    arrayHelpers.replace(values.experience.length - 1, getData);
-                    setShow(false);
-                  }}
-                />
-              )}
-            </div>
           </div>
         )}
       />
