@@ -6,11 +6,14 @@ import { Form } from "formik";
 type DataType = {
   key?: string;
   data: element[];
+  id: number;
   show: (t: boolean) => void;
   saveExperience: (t: any) => any;
 };
 
-const ExperienceChild = ({ data, key, show, saveExperience }: DataType) => {
+const ExperienceChild = ({ data, key, show, saveExperience,id }: DataType) => {
+  console.log(id)
+  console.log(data)
   return (
     <div>
       <div className="subSection">
@@ -18,7 +21,7 @@ const ExperienceChild = ({ data, key, show, saveExperience }: DataType) => {
           return <Global element={element} />;
         })}
         <button onClick={() => show(false)}>Cancel</button>
-        <button onClick={saveExperience}>Save</button>
+        <button type="submit" onClick={saveExperience}>Save</button>
       </div>
     </div>
   );

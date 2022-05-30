@@ -63,11 +63,6 @@ export const formData: FormDataType = {
   ],
   experienceField: [
     {
-      fieldName: "Title",
-      fieldId: "title",
-      fieldType: "input",
-    },
-    {
       fieldName: "Company",
       fieldId: "company",
       fieldType: "input",
