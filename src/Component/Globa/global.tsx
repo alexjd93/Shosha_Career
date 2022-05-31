@@ -1,11 +1,12 @@
 import React from "react";
 import { element } from "../../formData";
 import { Field, ErrorMessage } from "formik";
-import Test from "../Calendar/calendar";
+import Calendar from "../Calendar/calendar";
 type Props<DataItem> = {
   element: DataItem;
 };
 const Global = <T extends element>({ element }: Props<T>) => {
+  console.log(element)
   let component;
   switch (element.fieldType) {
     case "input":
@@ -20,7 +21,7 @@ const Global = <T extends element>({ element }: Props<T>) => {
       );
       break;
     case "calendar":
-      component = <Test />;
+      component = <Calendar fieldId= {element.fieldId}/>;
       break;
     case "button":
       component = <Field />;
@@ -29,7 +30,8 @@ const Global = <T extends element>({ element }: Props<T>) => {
     <div className="inputBox">
       <div>
         <label>
-          <span>*</span> {element.fieldName}
+          {element.isOptional ? <p> <span>* </span> {element.fieldName} </p>: <p>{element.fieldName} <span>(Optional)</span> </p>}
+          
         </label>
       </div>
       <div>

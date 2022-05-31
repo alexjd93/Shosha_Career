@@ -25,7 +25,7 @@ interface MyFormValues {
   phoneNumber: number;
   address: string;
   store: string;
-  dateOfBirth: Date | null;
+  dateOfBirth: Date | string;
   experience: ExperienceType[];
 }
 
@@ -45,14 +45,14 @@ const DynamicForm = ({ formData }: formData) => {
     phoneNumber: 0,
     address: "",
     store: "",
-    dateOfBirth: null,
+    dateOfBirth: new Date(),
     experience: [
-      {
-        title: "",
-        industry: "",
-        summary: "",
-        currentWork: false,
-      },
+      // {
+      //   title: "",
+      //   industry: "",
+      //   summary: "",
+      //   currentWork: false,
+      // },
     ],
   };
   return (

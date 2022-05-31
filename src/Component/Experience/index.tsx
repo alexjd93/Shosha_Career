@@ -3,6 +3,7 @@ import React from "react";
 import Title from "../Header/header";
 import { element } from "../../formData";
 import ExperienceChild from "./experience";
+import ExperienceDetail from "./experienceDetail";
 import { FieldArray, validateYupSchema, useFormikContext } from "formik";
 
 type DataType = {
@@ -26,36 +27,23 @@ interface MyFormValues {
   phoneNumber: number;
   address: string;
   store: string;
-  dateOfBirth: Date | null;
+  dateOfBirth: string;
   experience: ExperienceType[];
 }
 
 const ExperienceSection = ({ data, key }: DataType) => {
-  const [show, setShow] = useState<Boolean>(true);
+  const [show, setShow] = useState<Boolean>(false);
   const [experienceData, setExperienceData] = useState<any>([]);
   const { values, submitForm } = useFormikContext<any>();
 
-  // React.useEffect(() => {
-  //   if (values) {
-  //     let experience = [];
-  //     const id = values.experience.length;
-  //     for (const i of data) {
-  //       let obj = {};
-  //       if (id !== 0) {
-  //         obj = {
-  //           ...i,
-  //           fieldId: `experience[${id + 1}].${i.fieldId}`,
-  //         };
-  //       }
-  //       obj = {
-  //         ...i,
-  //         fieldId: `experience[${id}].${i.fieldId}`,
-  //       };
-  //       experience.push(obj);
-  //       setExperienceData(experience);
-  //     }
-  //   }
-  // }, [show]);
+  const removeExperience = (arrayHelpers: any, index: number) => {
+    console.log(index);
+    arrayHelpers.remove(index);
+  };
+
+  const editExperience = (arrayHelpers:any,index:number) => {
+
+  }
 
   return (
     <div>
@@ -70,12 +58,22 @@ const ExperienceSection = ({ data, key }: DataType) => {
 
             {values.experience.map((exp: any, index: number) => {
               if (exp && exp.saved === true) {
-                return <p>TEST</p>;
+                return (
+                  <ExperienceDetail
+                    exp={exp}
+                    removeExperience={() => {
+                      removeExperience(arrayHelpers, index);
+                    }}
+                  />
+                );
               } else {
                 let newArray = [];
                 let obj = {};
                 for (const i of data) {
-                  obj = { ...i, fieldId: `experience[${index}].${i.fieldId}` };
+                  obj = {
+                    ...i,
+                    fieldId: `experience[${index}].${i.fieldId}`,
+                  };
                   newArray.push(obj);
                 }
                 return (
@@ -86,6 +84,9 @@ const ExperienceSection = ({ data, key }: DataType) => {
                       getData["saved"] = true;
                       arrayHelpers.replace(index, getData);
                       setShow(false);
+                    }}
+                    removeExperience={() => {
+                      removeExperience(arrayHelpers, index);
                     }}
                   />
                 );

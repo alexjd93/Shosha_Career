@@ -6,31 +6,37 @@ export const formData: FormDataType = {
       fieldName: "First Name",
       fieldId: "firstName",
       fieldType: "input",
+      isOptional: true
     },
     {
       fieldName: "Last Name",
       fieldId: "lastName",
       fieldType: "input",
+      isOptional: true
     },
     {
       fieldName: "Email",
       fieldId: "email",
       fieldType: "input",
+      isOptional: true
     },
     {
       fieldName: "Phone Number",
       fieldId: "phoneNumber",
       fieldType: "input",
+      isOptional: true
     },
     {
       fieldName: "Date of Birth",
       fieldId: "dateOfBirth",
       fieldType: "calendar",
+      isOptional: false
     },
     {
       fieldName: "Address",
       fieldId: "address",
       fieldType: "input",
+      isOptional: true
     },
 
     // {
@@ -66,50 +72,65 @@ export const formData: FormDataType = {
       fieldName: "Company",
       fieldId: "company",
       fieldType: "input",
+      isOptional: true
     },
     {
       fieldName: "Location (City)",
       fieldId: "location",
       fieldType: "input",
+      isOptional: true
     },
     {
       fieldName: "Detail",
       fieldId: "detail",
       fieldType: "input",
+      isOptional: false
     },
+    {
+      fieldName: "Start date",
+      fieldId: "startDate",
+      fieldType: "calendar",
+      isOptional: false
+    },
+    {
+      fieldName: "End date",
+      fieldId: "endDate",
+      fieldType: "calendar",
+      isOptional: false
+    }
   ],
-  education: [
-    {
-      fieldName: "Institution",
-      fieldId: "institution",
-      fieldType: "text",
-    },
-    {
-      fieldName: "Major",
-      fieldId: "major",
-      fieldType: "text",
-    },
-    {
-      fieldName: "Degree",
-      fieldId: "degree",
-      fieldType: "text",
-    },
-    {
-      fieldName: "Location (City)",
-      fieldId: "location",
-      fieldType: "text",
-    },
-    {
-      fieldName: "Detail",
-      fieldId: "detail",
-      fieldType: "text",
-    },
-    {
-      fieldName: "Save",
-      fieldId: "save",
-      fieldType: "button",
-    },
-  ],
+  // education: [
+  //   {
+  //     fieldName: "Institution",
+  //     fieldId: "institution",
+  //     fieldType: "text",
+  //   },
+  //   {
+  //     fieldName: "Major",
+  //     fieldId: "major",
+  //     fieldType: "text",
+  //   },
+  //   {
+  //     fieldName: "Degree",
+  //     fieldId: "degree",
+  //     fieldType: "text",
+  //   },
+  //   {
+  //     fieldName: "Location (City)",
+  //     fieldId: "location",
+  //     fieldType: "text",
+  //   },
+  //   {
+  //     fieldName: "Detail",
+  //     fieldId: "detail",
+  //     fieldType: "text",
+  //   },
+  //   {
+  //     fieldName: "Save",
+  //     fieldId: "save",
+  //     fieldType: "button",
+  //   },
+  // ],
   preliminary: [
     {
       fieldName: "Are you 18 years or older?",
@@ -174,7 +195,6 @@ export type FormDataType = {
   personalInfoField: element[];
   personalWebInfoField: element[];
   experienceField: element[];
-  education: element[];
   preliminary: element[];
 };
 
@@ -183,5 +203,6 @@ export type element = {
   fieldId: string;
   fieldOptions?: string[];
   fieldType: string;
+  isOptional?: boolean;
   buttonEvent?: () => void;
 };

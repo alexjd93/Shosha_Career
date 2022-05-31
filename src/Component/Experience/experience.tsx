@@ -8,10 +8,11 @@ type DataType = {
   data: any[];
   id?: number;
   show?: (t: boolean) => void;
-  saveExperience?: (t: any) => any;
+  saveExperience: () => void;
+  removeExperience:() => any;
 };
 
-const ExperienceChild = ({ data, key, show, saveExperience, id }: DataType) => {
+const ExperienceChild = ({ data, key, show, saveExperience, removeExperience }: DataType) => {
   return (
     <div>
       <div className="subSection">
@@ -21,6 +22,9 @@ const ExperienceChild = ({ data, key, show, saveExperience, id }: DataType) => {
         {/* <button onClick={() => show(false)}>Cancel</button> */}
         <button type="submit" onClick={saveExperience}>
           Save
+        </button>
+        <button type="submit" onClick={removeExperience}>
+          Cancel
         </button>
       </div>
     </div>
