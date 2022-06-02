@@ -1,8 +1,7 @@
 type Props = {
     title: string
 }
-const Header = ({title}:Props) => {
-    console.log(title)
+const Header = ({title}:Props) => { 
     return(
         <div className="headline">
             <h2>{title}</h2>

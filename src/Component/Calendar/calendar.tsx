@@ -8,7 +8,6 @@ import moment from 'moment';
 
 const Example = ({ fieldId }: { fieldId: string }) => {
   const [field] = useField({ name: fieldId });
-  console.log(field);
   const { setFieldValue } = useFormikContext();
   return (
     <div>

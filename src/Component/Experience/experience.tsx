@@ -13,13 +13,13 @@ type DataType = {
 };
 
 const ExperienceChild = ({ data, key, show, saveExperience, removeExperience }: DataType) => {
+  console.log(data)
   return (
     <div>
       <div className="subSection">
         {data.map((element: element) => {
           return <Global element={element} />;
         })}
-        {/* <button onClick={() => show(false)}>Cancel</button> */}
         <button type="submit" onClick={saveExperience}>
           Save
         </button>

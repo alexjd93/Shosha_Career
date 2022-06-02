@@ -6,7 +6,6 @@ type Props<DataItem> = {
   element: DataItem;
 };
 const Global = <T extends element>({ element }: Props<T>) => {
-  console.log(element)
   let component;
   switch (element.fieldType) {
     case "input":

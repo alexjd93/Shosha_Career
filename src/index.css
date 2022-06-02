@@ -25,6 +25,7 @@ h2{
 
 .inputBox{
     padding-bottom: 24px;
+    border: solid 1px var(#636d77);
 }
 
 .input{
@@ -69,4 +70,33 @@ h2{
     margin-right:10px;
     height: 50px;
     width: 16px;
+}
+
+.profile_subSection {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+button{
+    border: 1px solid;
+    border-radius: 8px;
+    background: transparent;
+    padding: 6px 23px;
+}
+
+.subForm {
+    padding: 16px 24px;
+    border-radius: 4px;
+    background-color: #e1e6eb;
+    margin-bottom: 4px;
+}
+
+.inputBox p {
+    color: #333e49;
+    font-size:14px;
+    letter-spacing: normal;
+    line-height: 1.5;
+    font-weight: 600 !important;
+    margin-bottom: 8px;
 }

@@ -64,19 +64,21 @@ const DynamicForm = ({ formData }: formData) => {
           console.log(values);
         }}
       >
-        <Form>
-          {Object.keys(formData).map((key: string) => {
-            switch (key) {
-              case "personalInfoField":
-                return <DefaultSection key={key} data={formData[key]} />;
-              case "experienceField":
-                return <ExperienceSection key={key} data={formData[key]} />;
-              // case "education":
-              //   return <ChildForm key={key} data={formData[key]} />;
-            }
-          })}
-          <button type="submit">Submit</button>
-        </Form>
+        {({ values }:any) => (
+          <Form>
+            {Object.keys(formData).map((key: string) => {
+              switch (key) {
+                case "personalInfoField":
+                  return <DefaultSection key={key} data={formData[key]} />;
+                case "experienceField":
+                  return <ExperienceSection key={key} data={formData[key]} values={values} />;
+                // case "education":
+                //   return <ChildForm key={key} data={formData[key]} />;
+              }
+            })}
+            <button type="submit">Submit</button>
+          </Form>
+        )}
       </Formik>
     </div>
   );
