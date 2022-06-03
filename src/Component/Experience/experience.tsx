@@ -13,7 +13,6 @@ type DataType = {
 };
 
 const ExperienceChild = ({ data, key, show, saveExperience, removeExperience }: DataType) => {
-  console.log(data)
   return (
     <div>
       <div className="subSection">

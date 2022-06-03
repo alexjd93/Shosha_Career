@@ -67,6 +67,19 @@ export const formData: FormDataType = {
       fieldType: "text",
     },
   ],
+  profileField: [
+    {
+      fieldName: "Summary",
+      fieldId: "summary",
+      fieldType:"textarea"
+    },
+    {
+      fieldName: "Resume",
+      fieldId: "resume",
+      fieldType:"fielbox"
+    }
+  ],
+
   experienceField: [
     {
       fieldName: "Company",
@@ -195,6 +208,7 @@ export type FormDataType = {
   personalInfoField: element[];
   personalWebInfoField: element[];
   experienceField: element[];
+  profileField:element[];
   preliminary: element[];
 };
 

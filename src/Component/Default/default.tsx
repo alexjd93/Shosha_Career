@@ -10,9 +10,10 @@ type DataType = {
 };
 
 const defaultSection = ({ data,key }: DataType) => {
-    console.log(key)
+  
+  console.log(data)
   return ( 
-    <div>
+    <div className="">
       <Title title ="Personal information" />
         <div className="subSection">
           {data.map((element: element) => {

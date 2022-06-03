@@ -4,6 +4,7 @@ import Title from "../Header/header";
 import { element } from "../../formData";
 import ExperienceChild from "./experience";
 import ExperienceDetail from "./experienceDetail";
+import Global from "../Globa/global";
 import {
   FieldArray,
   validateYupSchema,
@@ -60,9 +61,11 @@ const ExperienceSection = ({ data, key, values }: DataType) => {
         render={(arrayHelpers: ArrayHelpers) => (
           <div>
             <div className="profile_subSection">
-              <p>Experience (Optional)</p>
+              <p>
+                Experience <small>(Optional)</small>
+              </p>
               <button type="button" onClick={() => arrayHelpers.push({})}>
-                ADD
+                + Add
               </button>
             </div>
 
@@ -94,26 +97,26 @@ const ExperienceSection = ({ data, key, values }: DataType) => {
                 }
                 return (
                   <div className="subForm">
-                  <ExperienceChild
-                    data={newArray}
-                    saveExperience={() => {
-                      const getData = values.experience[index];
-                      getData["saved"] = true;
-                      arrayHelpers.replace(index, getData);
-                      setShow(false);
-                    }}
-                    removeExperience={() => {
-                      const getData = values.experience[index];
-                      //when user press cancel in edit mode
-                      if (getData.edit) {
-                        getData["edit"] = false;
+                    <ExperienceChild
+                      data={newArray}
+                      saveExperience={() => {
+                        const getData = values.experience[index];
                         getData["saved"] = true;
-                        //when user cancel in create mode
-                      } else {
-                        removeExperience(arrayHelpers, index);
-                      }
-                    }}
-                  />
+                        arrayHelpers.replace(index, getData);
+                        setShow(false);
+                      }}
+                      removeExperience={() => {
+                        const getData = values.experience[index];
+                        //when user press cancel in edit mode
+                        if (getData.edit) {
+                          getData["edit"] = false;
+                          getData["saved"] = true;
+                          //when user cancel in create mode
+                        } else {
+                          removeExperience(arrayHelpers, index);
+                        }
+                      }}
+                    />
                   </div>
                 );
               }

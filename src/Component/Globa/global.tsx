@@ -29,7 +29,7 @@ const Global = <T extends element>({ element }: Props<T>) => {
     <div className="inputBox">
       <div>
         <label>
-          {element.isOptional ? <p> <span>* </span> {element.fieldName} </p>: <p>{element.fieldName} <span>(Optional)</span> </p>}
+          {element.isOptional ? <p> <span>* </span> {element.fieldName} </p>: <p>{element.fieldName} <small>(Optional)</small> </p>}
           
         </label>
       </div>
