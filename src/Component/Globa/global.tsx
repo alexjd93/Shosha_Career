@@ -15,7 +15,6 @@ const Global = <T extends element>({ element }: Props<T>) => {
           as={element.fieldType}
           id={element.fieldId}
           name={element.fieldId}
-          placeholder={element.fieldName}
         />
       );
       break;

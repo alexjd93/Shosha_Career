@@ -36,7 +36,6 @@ const errorSchema = Yup.object().shape({
   phoneNumber: Yup.number().required("Required field"),
   store: Yup.string().required("Required field"),
 });
-
 const DynamicForm = ({ formData }: formData) => {
   const initialValues: MyFormValues = {
     firstName: "",
@@ -55,6 +54,19 @@ const DynamicForm = ({ formData }: formData) => {
       // },
     ],
   };
+
+  const deleteAll = (setFieldValue:any, key:any,data:any) => {
+    if(key === "experienceField"){
+        setFieldValue('experience', []);
+    }
+    else{
+      for(const i of data[key]){
+        setFieldValue(i.fieldId, "");
+      }
+    }
+    
+  }
+
   return (
     <div>
       <Formik
@@ -64,14 +76,14 @@ const DynamicForm = ({ formData }: formData) => {
           console.log(values);
         }}
       >
-        {({ values }:any) => (
+        {({ values,setFieldValue }:any) => (
           <Form>
             {Object.keys(formData).map((key: string) => {
               switch (key) {
                 case "personalInfoField":
-                  return <DefaultSection key={key} data={formData[key]} />;
+                  return <DefaultSection key={key} data={formData[key]} deleteAll= {() => deleteAll(setFieldValue, key,formData)} />;
                 case "experienceField":
-                  return <ExperienceSection key={key} data={formData[key]} values={values} />;
+                  return <ExperienceSection key={key} data={formData[key]} values={values} deleteAll={() => deleteAll(setFieldValue, key,formData)} />;
                 // case "education":
                 //   return <ChildForm key={key} data={formData[key]} />;
               }

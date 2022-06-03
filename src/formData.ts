@@ -67,83 +67,52 @@ export const formData: FormDataType = {
       fieldType: "text",
     },
   ],
-  profileField: [
-    {
-      fieldName: "Summary",
-      fieldId: "summary",
-      fieldType:"textarea"
-    },
-    {
-      fieldName: "Resume",
-      fieldId: "resume",
-      fieldType:"fielbox"
-    }
-  ],
-
-  experienceField: [
-    {
-      fieldName: "Company",
-      fieldId: "company",
-      fieldType: "input",
-      isOptional: true
-    },
-    {
-      fieldName: "Location (City)",
-      fieldId: "location",
-      fieldType: "input",
-      isOptional: true
-    },
-    {
-      fieldName: "Detail",
-      fieldId: "detail",
-      fieldType: "input",
-      isOptional: false
-    },
-    {
-      fieldName: "Start date",
-      fieldId: "startDate",
-      fieldType: "calendar",
-      isOptional: false
-    },
-    {
-      fieldName: "End date",
-      fieldId: "endDate",
-      fieldType: "calendar",
-      isOptional: false
-    }
-  ],
-  // education: [
-  //   {
-  //     fieldName: "Institution",
-  //     fieldId: "institution",
-  //     fieldType: "text",
-  //   },
-  //   {
-  //     fieldName: "Major",
-  //     fieldId: "major",
-  //     fieldType: "text",
-  //   },
-  //   {
-  //     fieldName: "Degree",
-  //     fieldId: "degree",
-  //     fieldType: "text",
-  //   },
-  //   {
-  //     fieldName: "Location (City)",
-  //     fieldId: "location",
-  //     fieldType: "text",
-  //   },
-  //   {
-  //     fieldName: "Detail",
-  //     fieldId: "detail",
-  //     fieldType: "text",
-  //   },
-  //   {
-  //     fieldName: "Save",
-  //     fieldId: "save",
-  //     fieldType: "button",
-  //   },
-  // ],
+  profileField: {
+    experienceField: [
+      {
+        fieldName: "Company",
+        fieldId: "company",
+        fieldType: "input",
+        isOptional: true
+      },
+      {
+        fieldName: "Location (City)",
+        fieldId: "location",
+        fieldType: "input",
+        isOptional: true
+      },
+      {
+        fieldName: "Detail",
+        fieldId: "detail",
+        fieldType: "input",
+        isOptional: false
+      },
+      {
+        fieldName: "Start date",
+        fieldId: "startDate",
+        fieldType: "calendar",
+        isOptional: false
+      },
+      {
+        fieldName: "End date",
+        fieldId: "endDate",
+        fieldType: "calendar",
+        isOptional: false
+      }
+    ],
+    profile: [
+      {
+        fieldName: "Summary",
+        fieldId: "summary",
+        fieldType:"textarea"
+      },
+      {
+        fieldName: "Resume",
+        fieldId: "resume",
+        fieldType:"fielbox"
+      }
+    ]
+},
   preliminary: [
     {
       fieldName: "Are you 18 years or older?",
@@ -208,9 +177,14 @@ export type FormDataType = {
   personalInfoField: element[];
   personalWebInfoField: element[];
   experienceField: element[];
-  profileField:element[];
+  profileField:any;
   preliminary: element[];
 };
+
+export type Profle = {
+  experienceField : element[],
+  profile: element[]
+}
 
 export type element = {
   fieldName: string;

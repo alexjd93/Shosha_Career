@@ -37,11 +37,11 @@ type DataType = {
   key: string;
   data: element[];
   values: MyFormValues;
+  deleteAll:(() => void);
 };
 
-const ExperienceSection = ({ data, key, values }: DataType) => {
+const ExperienceSection = ({ data, values, deleteAll }: DataType) => {
   const [show, setShow] = useState<Boolean>(false);
-  const [experienceData, setExperienceData] = useState<any>([]);
   // const { values, submitForm } = useFormikContext<any>();
 
   const removeExperience = (arrayHelpers: any, index: number) => {
@@ -49,13 +49,10 @@ const ExperienceSection = ({ data, key, values }: DataType) => {
     arrayHelpers.remove(index);
   };
 
-  const editExperience = (arrayHelpers: any, index: number) => {
-    const getData = arrayHelpers;
-  };
 
   return (
     <div>
-      <Title title="Profile" />
+      <Title title="Profile" deleteAll={deleteAll}/>
       <FieldArray
         name="experience"
         render={(arrayHelpers: ArrayHelpers) => (
