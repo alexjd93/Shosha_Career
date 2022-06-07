@@ -1,43 +1,19 @@
-import * as React from "react";
+import React from "react";
 import ExperienceSection from "../Component/Experience";
 import DefaultSection from "../Component/Default/default";
-import { FormDataType } from "../formData";
+import PreliminarySection from "../Component/Preliminary/preliminary";
+import { FormDataType,MyFormValueType } from "../formData";
 import { Formik, Form } from "formik";
-import * as Yup from "yup";
+import { formData } from "../formData";
 
 type formData = {
   formData: FormDataType;
 };
 
-type ExperienceType = {
-  title: string;
-  industry: string;
-  summary: string;
-  startDate?: string;
-  endDate?: string;
-  currentWork: Boolean;
-};
+const DynamicForm = () => {
+  const [nextPage, setNextPage] = React.useState<Boolean>(false);
 
-interface MyFormValues {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: number;
-  address: string;
-  store: string;
-  dateOfBirth: Date | string;
-  experience: ExperienceType[];
-}
-
-const errorSchema = Yup.object().shape({
-  firstName: Yup.string().required("Required field"),
-  lastName: Yup.string().required("Required field"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  phoneNumber: Yup.number().required("Required field"),
-  store: Yup.string().required("Required field"),
-});
-const DynamicForm = ({ formData }: formData) => {
-  const initialValues: MyFormValues = {
+  const initialValues: MyFormValueType = {
     firstName: "",
     lastName: "",
     email: "",
@@ -45,14 +21,15 @@ const DynamicForm = ({ formData }: formData) => {
     address: "",
     store: "",
     dateOfBirth: new Date(),
-    experience: [
-      // {
-      //   title: "",
-      //   industry: "",
-      //   summary: "",
-      //   currentWork: false,
-      // },
-    ],
+    experience: [],
+    checkAge: null,
+    checkEntitlement: null,
+    checkVapeKnowledge: null,
+    checkWeekendShift: null,
+    checkLongShift: null,
+    checkAttitude: null,
+    guideline: null,
+    checkTransport: null
   };
 
   const deleteAll = (setFieldValue:any, key:any,data:any) => {
@@ -79,16 +56,21 @@ const DynamicForm = ({ formData }: formData) => {
         {({ values,setFieldValue }:any) => (
           <Form>
             {Object.keys(formData).map((key: string) => {
-              switch (key) {
-                case "personalInfoField":
-                  return <DefaultSection key={key} data={formData[key]} deleteAll= {() => deleteAll(setFieldValue, key,formData)} />;
-                case "experienceField":
-                  return <ExperienceSection key={key} data={formData[key]} values={values} deleteAll={() => deleteAll(setFieldValue, key,formData)} />;
-                // case "education":
-                //   return <ChildForm key={key} data={formData[key]} />;
+              if(!nextPage){
+                switch (key) {
+                  case "personalInfoField":
+                      return <DefaultSection key={key} data={formData[key]} deleteAll= {() => deleteAll(setFieldValue, key,formData)} />;
+                  case "profileField":
+                    return <ExperienceSection key={key} data={formData[key]} values={values} deleteAll={() => deleteAll(setFieldValue, key,formData)} />;
+                }
               }
+              else{
+                if(key === "preliminary")
+                return <PreliminarySection key={key} data={formData[key] values={values}}/>;
+              }
+              
             })}
-            <button type="submit">Submit</button>
+            {nextPage ? <button>Submit</button>: <button onClick={() => {setNextPage(true)}}>Next</button>}
           </Form>
         )}
       </Formik>

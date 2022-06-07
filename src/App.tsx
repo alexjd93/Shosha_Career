@@ -1,17 +1,9 @@
 import "./App.css";
-import { formData } from "../src/formData";
 import DynamicForm from "../src/DynamicForm/dynamicForm";
 import Head from "../src/Component/Head/head";
 import ProgressBar from '../src/Component/ProgressBar/progressBar';
+import { Routes, Route, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-interface IDataType {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: number;
-  dateOfBirth: string;
-  preferStore: [];
-}
 
 const App = () => {
   const [scrollPosition, setScrollPosition] = useState<number>(100)
@@ -48,11 +40,15 @@ const App = () => {
 
   return (
     <>
-      <Head />
+      <Head/>
       <ProgressBar scroll={scrollPosition + '%'}/>
       <div className = "wrapper">
       <div className="container mx-auto">
-        <DynamicForm formData={formData} />
+        {/* <Routes>
+          <Route path="/" element={<DynamicForm/>}></Route>
+          <Route path="nextPage" element={<Preliminary/>}></Route>
+        </Routes> */}
+        <DynamicForm />
       </div>
       </div>
     </>

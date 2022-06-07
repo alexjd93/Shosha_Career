@@ -176,8 +176,10 @@ export const formData: FormDataType = {
 export type FormDataType = {
   personalInfoField: element[];
   personalWebInfoField: element[];
-  experienceField: element[];
-  profileField:any;
+  profileField:{
+    experienceField: element[],
+    profile: element[]
+  }
   preliminary: element[];
 };
 
@@ -194,3 +196,34 @@ export type element = {
   isOptional?: boolean;
   buttonEvent?: () => void;
 };
+
+type ExperienceType = {
+  title: string;
+  industry: string;
+  summary: string;
+  startDate?: string;
+  endDate?: string;
+  currentWork: Boolean;
+  saved?: boolean;
+  edit?: boolean;
+};
+
+export type MyFormValueType = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: number;
+  address: string;
+  store: string;
+  dateOfBirth: Date | string;
+  experience: ExperienceType[];
+  checkAge: boolean | null;
+  checkEntitlement: boolean | null;
+  checkVapeKnowledge: boolean | null;
+  checkWeekendShift: boolean | null;
+  checkLongShift: boolean | null;
+  checkAttitude: boolean | null;
+  guideline: boolean | null;
+  checkTransport: boolean | null;
+}
+

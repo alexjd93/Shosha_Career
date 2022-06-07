@@ -97,12 +97,16 @@ h2 {
 }
 
 button {
-  border: 1px solid;
+  color:#ffff;
+  border: red 1px solid;
+  background-color: #ff4136;
   border-radius: 8px;
-  background: transparent;
   padding: 6px 23px;
   font-size: 13px;
   font-weight: 600;
+}
+button:disabled{
+  background-color: #cccccc;
 }
 
 .subForm {

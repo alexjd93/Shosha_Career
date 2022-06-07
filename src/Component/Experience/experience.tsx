@@ -1,7 +1,6 @@
 import React from "react";
 import Global from "../Globa/global";
 import { element } from "../../formData";
-import { Form } from "formik";
 
 type DataType = {
   key?: string;

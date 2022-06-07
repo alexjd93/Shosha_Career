@@ -1,7 +1,6 @@
-import { useState } from "react";
 import React from "react";
 import Title from "../Header/header";
-import { element } from "../../formData";
+import { element,MyFormValueType } from "../../formData";
 import ExperienceChild from "./experience";
 import ExperienceDetail from "./experienceDetail";
 import Global from "../Globa/global";
@@ -12,36 +11,15 @@ import {
   ArrayHelpers,
 } from "formik";
 
-type ExperienceType = {
-  title: string;
-  company: string;
-  summary: string;
-  startDate: string;
-  endDate: string;
-  currentWork: Boolean;
-  saved: boolean;
-  edit: boolean;
-};
-
-interface MyFormValues {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phoneNumber: number;
-  address: string;
-  store: string;
-  dateOfBirth: string;
-  experience: ExperienceType[];
-}
 type DataType = {
   key: string;
-  data: element[];
-  values: MyFormValues;
+  data: {experienceField:element[], profile:element[]};
+  values: MyFormValueType;
   deleteAll:(() => void);
 };
 
 const ExperienceSection = ({ data, values, deleteAll }: DataType) => {
-  const [show, setShow] = useState<Boolean>(false);
+  const [disable, setDisable] = React.useState(false);
   // const { values, submitForm } = useFormikContext<any>();
 
   const removeExperience = (arrayHelpers: any, index: number) => {
@@ -61,7 +39,7 @@ const ExperienceSection = ({ data, values, deleteAll }: DataType) => {
               <p>
                 Experience <small>(Optional)</small>
               </p>
-              <button type="button" onClick={() => arrayHelpers.push({})}>
+              <button disabled={disable} onClick={() => arrayHelpers.push({})}>
                 + Add
               </button>
             </div>
@@ -83,9 +61,10 @@ const ExperienceSection = ({ data, values, deleteAll }: DataType) => {
                   />
                 );
               } else {
+                setDisable(true)
                 let newArray = [];
                 let obj = {};
-                for (const i of data) {
+                for (const i of data.experienceField) {
                   obj = {
                     ...i,
                     fieldId: `experience[${index}].${i.fieldId}`,
@@ -100,7 +79,7 @@ const ExperienceSection = ({ data, values, deleteAll }: DataType) => {
                         const getData = values.experience[index];
                         getData["saved"] = true;
                         arrayHelpers.replace(index, getData);
-                        setShow(false);
+                        setDisable(false)
                       }}
                       removeExperience={() => {
                         const getData = values.experience[index];
