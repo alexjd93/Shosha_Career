@@ -2,7 +2,7 @@ import React from "react";
 import ExperienceSection from "../Component/Experience";
 import DefaultSection from "../Component/Default/default";
 import PreliminarySection from "../Component/Preliminary/preliminary";
-import { FormDataType,MyFormValueType } from "../formData";
+import { FormDataType, MyFormValueType } from "../formData";
 import { Formik, Form } from "formik";
 import { formData } from "../formData";
 
@@ -29,20 +29,18 @@ const DynamicForm = () => {
     checkLongShift: null,
     checkAttitude: null,
     guideline: null,
-    checkTransport: null
+    checkTransport: null,
   };
 
-  const deleteAll = (setFieldValue:any, key:any,data:any) => {
-    if(key === "experienceField"){
-        setFieldValue('experience', []);
-    }
-    else{
-      for(const i of data[key]){
+  const deleteAll = (setFieldValue: any, key: any, data: any) => {
+    if (key === "experienceField") {
+      setFieldValue("experience", []);
+    } else {
+      for (const i of data[key]) {
         setFieldValue(i.fieldId, "");
       }
     }
-    
-  }
+  };
 
   return (
     <div>
@@ -53,24 +51,55 @@ const DynamicForm = () => {
           console.log(values);
         }}
       >
-        {({ values,setFieldValue }:any) => (
+        {({ values, setFieldValue }: any) => (
           <Form>
             {Object.keys(formData).map((key: string) => {
-              if(!nextPage){
+              if (!nextPage) {
                 switch (key) {
                   case "personalInfoField":
-                      return <DefaultSection key={key} data={formData[key]} deleteAll= {() => deleteAll(setFieldValue, key,formData)} />;
+                    return (
+                      <DefaultSection
+                        key={key}
+                        data={formData[key]}
+                        deleteAll={() =>
+                          deleteAll(setFieldValue, key, formData)
+                        }
+                      />
+                    );
                   case "profileField":
-                    return <ExperienceSection key={key} data={formData[key]} values={values} deleteAll={() => deleteAll(setFieldValue, key,formData)} />;
+                    return (
+                      <ExperienceSection
+                        key={key}
+                        data={formData[key]}
+                        values={values}
+                        deleteAll={() =>
+                          deleteAll(setFieldValue, key, formData)
+                        }
+                      />
+                    );
                 }
+              } else {
+                if (key === "preliminary")
+                  return (
+                    <PreliminarySection
+                      key={key}
+                      data={formData[key]}
+                      values={values}
+                    />
+                  );
               }
-              else{
-                if(key === "preliminary")
-                return <PreliminarySection key={key} data={formData[key] values={values}}/>;
-              }
-              
             })}
-            {nextPage ? <button>Submit</button>: <button onClick={() => {setNextPage(true)}}>Next</button>}
+            {nextPage ? (
+              <button>Submit</button>
+            ) : (
+              <button
+                onClick={() => {
+                  setNextPage(true);
+                }}
+              >
+                Next
+              </button>
+            )}
           </Form>
         )}
       </Formik>

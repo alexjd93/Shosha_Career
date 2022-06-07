@@ -7,21 +7,18 @@ import { Form } from "formik";
 type DataType = {
   key: string;
   data: element[];
-  deleteAll:(() => void);
+  deleteAll: () => void;
 };
 
-const defaultSection = ({ data,deleteAll }: DataType) => {
-  
-  console.log(data)
-  return ( 
+const defaultSection = ({ data, deleteAll }: DataType) => {
+  return (
     <div className="">
-      <Title title ="Personal information" deleteAll={deleteAll}/>
-        <div className="subSection">
-          {data.map((element: element) => {
-              return <Global element={element} />;
-          })}
-        </div>
-
+      <Title title="Personal information" deleteAll={deleteAll} />
+      <div className="subSection">
+        {data.map((element: element) => {
+          return <Global element={element} />;
+        })}
+      </div>
     </div>
   );
 };

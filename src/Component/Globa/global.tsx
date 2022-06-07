@@ -1,6 +1,8 @@
 import React from "react";
 import { element } from "../../formData";
 import { Field, ErrorMessage } from "formik";
+import RadioButton from "../RadioButton/RadioButton";
+
 import Calendar from "../Calendar/calendar";
 type Props<DataItem> = {
   element: DataItem;
@@ -19,7 +21,10 @@ const Global = <T extends element>({ element }: Props<T>) => {
       );
       break;
     case "calendar":
-      component = <Calendar fieldId= {element.fieldId}/>;
+      component = <Calendar fieldId={element.fieldId} />;
+      break;
+    case "radio":
+      component = <RadioButton fieldId={element.fieldId} />;
       break;
     case "button":
       component = <Field />;
@@ -28,8 +33,16 @@ const Global = <T extends element>({ element }: Props<T>) => {
     <div className="inputBox">
       <div>
         <label>
-          {element.isOptional ? <p> <span>* </span> {element.fieldName} </p>: <p>{element.fieldName} <small>(Optional)</small> </p>}
-          
+          {element.isOptional ? (
+            <p>
+              {" "}
+              <span>* </span> {element.fieldName}{" "}
+            </p>
+          ) : (
+            <p>
+              {element.fieldName} <small>(Optional)</small>{" "}
+            </p>
+          )}
         </label>
       </div>
       <div>
