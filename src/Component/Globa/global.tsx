@@ -2,7 +2,7 @@ import React from "react";
 import { element } from "../../formData";
 import { Field, ErrorMessage } from "formik";
 import RadioButton from "../RadioButton/RadioButton";
-
+import AutocompleteBox from '../AutoComplete /AutoComplete'
 import Calendar from "../Calendar/calendar";
 type Props<DataItem> = {
   element: DataItem;
@@ -24,8 +24,11 @@ const Global = <T extends element>({ element }: Props<T>) => {
       component = <Calendar fieldId={element.fieldId} />;
       break;
     case "radio":
-      component = <RadioButton fieldId={element.fieldId} />;
+      component = <RadioButton element={element} />;
       break;
+    case "autocomplete":
+        component = <AutocompleteBox element={element}/>
+        break;
     case "button":
       component = <Field />;
   }

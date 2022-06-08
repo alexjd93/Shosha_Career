@@ -123,7 +123,7 @@ export const formData: FormDataType = {
     {
       fieldName:
         "What is your entitlement to work in New Zealand? If you are invited for an interview, you will be required to bring a copy of your identification and Right to Work document.",
-      fieldId: "entitlement",
+      fieldId: "checkEntitlement",
       fieldOptions: [
         "New Zealand/Australian Citizen",
         "New Zealand Permanent Resident",
