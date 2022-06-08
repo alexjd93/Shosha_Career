@@ -5,6 +5,7 @@ import PreliminarySection from "../Component/Preliminary/preliminary";
 import { FormDataType, MyFormValueType } from "../formData";
 import { Formik, Form } from "formik";
 import { formData } from "../formData";
+import { FaBullhorn } from "react-icons/fa";
 
 type formData = {
   formData: FormDataType;
@@ -30,7 +31,7 @@ const DynamicForm = () => {
     checkAttitude: null,
     guideline: null,
     checkTransport: null,
-    visaExpire: new Date()
+    visaExire: null
   };
 
   const deleteAll = (setFieldValue: any, key: any, data: any) => {

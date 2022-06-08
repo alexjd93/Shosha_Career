@@ -6,37 +6,37 @@ export const formData: FormDataType = {
       fieldName: "First Name",
       fieldId: "firstName",
       fieldType: "input",
-      isOptional: true
+      isOptional: true,
     },
     {
       fieldName: "Last Name",
       fieldId: "lastName",
       fieldType: "input",
-      isOptional: true
+      isOptional: true,
     },
     {
       fieldName: "Email",
       fieldId: "email",
       fieldType: "input",
-      isOptional: true
+      isOptional: true,
     },
     {
       fieldName: "Phone Number",
       fieldId: "phoneNumber",
       fieldType: "input",
-      isOptional: true
+      isOptional: true,
     },
     {
       fieldName: "Date of Birth",
       fieldId: "dateOfBirth",
       fieldType: "calendar",
-      isOptional: false
+      isOptional: false,
     },
     {
       fieldName: "Address",
       fieldId: "address",
       fieldType: "input",
-      isOptional: true
+      isOptional: true,
     },
 
     // {
@@ -73,46 +73,46 @@ export const formData: FormDataType = {
         fieldName: "Company",
         fieldId: "company",
         fieldType: "input",
-        isOptional: true
+        isOptional: true,
       },
       {
         fieldName: "Location (City)",
         fieldId: "location",
         fieldType: "input",
-        isOptional: true
+        isOptional: true,
       },
       {
         fieldName: "Detail",
         fieldId: "detail",
         fieldType: "input",
-        isOptional: false
+        isOptional: false,
       },
       {
         fieldName: "Start date",
         fieldId: "startDate",
         fieldType: "calendar",
-        isOptional: false
+        isOptional: false,
       },
       {
         fieldName: "End date",
         fieldId: "endDate",
         fieldType: "calendar",
-        isOptional: false
-      }
+        isOptional: false,
+      },
     ],
     profile: [
       {
         fieldName: "Summary",
         fieldId: "summary",
-        fieldType:"textarea"
+        fieldType: "textarea",
       },
       {
         fieldName: "Resume",
         fieldId: "resume",
-        fieldType:"fielbox"
-      }
-    ]
-},
+        fieldType: "fielbox",
+      },
+    ],
+  },
   preliminary: [
     {
       fieldName: "Are you 18 years or older?",
@@ -125,12 +125,12 @@ export const formData: FormDataType = {
         "What is your entitlement to work in New Zealand? If you are invited for an interview, you will be required to bring a copy of your identification and Right to Work document.",
       fieldId: "checkEntitlement",
       fieldOptions: [
-        "New Zealand/Australian Citizen",
-        "New Zealand Permanent Resident",
-        "Valid New Zealand Work Visa (If selected, please specify expiry date below)",
-        "Valid New Zealand Student Visa (If selected, please specify expiry date below)",
-        "Sponsorship in progress",
-        "Not currently entitled to work in New Zealand",
+        {id:1, value: "New Zealand/Australian Citizen"},
+        {id:2, value:"New Zealand Permanent Resident"},
+        {id:3, value:"Valid New Zealand Work Visa (If selected, please specify expiry date below)"},
+        {id:4, value:"Valid New Zealand Student Visa (If selected, please specify expiry date below)"},
+        {id:5, value:"Sponsorship in progress"},
+        {id:6, value:"Not currently entitled to work in New Zealand"},
       ],
       fieldType: "autocomplete",
     },
@@ -176,22 +176,22 @@ export const formData: FormDataType = {
 export type FormDataType = {
   personalInfoField: element[];
   personalWebInfoField: element[];
-  profileField:{
-    experienceField: element[],
-    profile: element[]
-  }
+  profileField: {
+    experienceField: element[];
+    profile: element[];
+  };
   preliminary: element[];
 };
 
 export type Profle = {
-  experienceField : element[],
-  profile: element[]
-}
+  experienceField: element[];
+  profile: element[];
+};
 
 export type element = {
   fieldName: string;
   fieldId: string;
-  fieldOptions?: string[];
+  fieldOptions?: (string | {id: number, value: string})[];
   fieldType: string;
   isOptional?: boolean;
   buttonEvent?: () => void;
@@ -215,7 +215,7 @@ export type MyFormValueType = {
   phoneNumber: number;
   address: string;
   store: string;
-  dateOfBirth: Date | string;
+  dateOfBirth: Date | null;
   experience: ExperienceType[];
   checkAge: boolean | null;
   checkEntitlement: boolean | null;
@@ -225,5 +225,5 @@ export type MyFormValueType = {
   checkAttitude: boolean | null;
   guideline: boolean | null;
   checkTransport: boolean | null;
-}
-
+  visaExire?: Date | null;
+};
