@@ -30,7 +30,7 @@ const DynamicForm = () => {
     checkAttitude: null,
     guideline: null,
     checkTransport: null,
-    visaExpire: new Date()
+    // visaExpire: new Date()
   };
 
   const deleteAll = (setFieldValue: any, key: any, data: any) => {
