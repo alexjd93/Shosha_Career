@@ -39,11 +39,12 @@ const Global = <T extends element>({ element }: Props<T>) => {
           {element.isOptional ? (
             <p>
               {" "}
-              <span>* </span> {element.fieldName}{" "}
+              {element.fieldName} <small>(Optional)</small>{" "}
+              
             </p>
           ) : (
             <p>
-              {element.fieldName} <small>(Optional)</small>{" "}
+              <span>* </span> {element.fieldName}{" "}
             </p>
           )}
         </label>

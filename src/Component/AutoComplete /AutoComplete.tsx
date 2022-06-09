@@ -3,6 +3,19 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import Global from "../Globa/global";
 import { useFormikContext } from "formik";
+import { ThemeProvider,createTheme } from "@material-ui/core/styles";
+
+const theme = createTheme({
+  overrides:{
+    MuiOutlinedInput:{
+      root:{
+        "&&& $input": {
+          padding: "1px"
+        }
+      }
+    }
+  }
+})
 
 const AutocompleteBox = ({ element }: any) => {
   const { setFieldValue } = useFormikContext();
@@ -23,6 +36,8 @@ const AutocompleteBox = ({ element }: any) => {
   return (
     <div>
       <Autocomplete
+      // classes={{ paper: classes.paper }}
+        style={{width:"100%"}}
         disablePortal
         id="combo-box-demo"
         onChange={(event, value) => {
@@ -38,7 +53,9 @@ const AutocompleteBox = ({ element }: any) => {
         }}
         options={newArr}
         sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="Movie" />}
+        renderInput={(params) => <ThemeProvider theme={theme}>
+          <TextField {...params} label={"Entilement"} variant="outlined" />
+        </ThemeProvider>}
       />
       {show && (
         <Global
